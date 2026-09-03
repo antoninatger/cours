@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilan - Formation Influenceurs</title>
+    <style>
+        :root {
+            --primary: #ef4444;
+            --primary-dark: #dc2626;
+            --primary-light: #fee2e2;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --accent: #f97316;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: -20px -20px 40px -20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            opacity: 0.95;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .intro {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 1rem;
+        }
+
+        .toc {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .toc h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 10px 0;
+        }
+
+        .toc a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .toc a:hover {
+            background: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .content h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--bg-light);
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text);
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .accordion-header:hover {
+            background: var(--primary-light);
+        }
+
+        .accordion-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-text {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .accordion-text p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .accordion-text ul, .accordion-text ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .accordion-text li {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .section-image {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .highlight-box {
+            background: #fef3c7;
+            border-left: 4px solid #f97316;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #92400e;
+        }
+
+        .key-point {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #7f1d1d;
+        }
+
+        .games-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #ea580c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .games-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .game-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .game-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 30px 15px;
+                margin: -15px -15px 30px -15px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .action-buttons {
+                display: none;
+            }
+
+            .accordion-item.active .accordion-content {
+                max-height: none;
+                display: block;
+            }
+
+            .accordion-header {
+                cursor: default;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📱 Fake News, Influenceurs et Esprit Critique</h1>
+        <p>Bilan de formation pédagogique</p>
+    </header>
+
+    <div class="container">
+        <img src="images/arnaque-nft-influenceur.jpg" alt="Influenceurs" class="hero-image">
+
+        <div class="intro">
+            <strong>Objectif :</strong> Analyser le rôle des influenceurs sur les réseaux sociaux, leur impact sur les opinions et les décisions, notamment chez les jeunes, dans une démarche d'éducation aux médias et à l'information.
+        </div>
+
+        <div class="toc">
+            <h2>📋 Table des matières</h2>
+            <ul>
+                <li><a href="#section-1">1. Contexte et enjeux</a></li>
+                <li><a href="#section-2">2. Mécanismes d'influence</a></li>
+                <li><a href="#section-3">3. Points clés de l'intervention</a></li>
+                <li><a href="#section-4">4. Compétences à développer</a></li>
+                <li><a href="#section-5">5. Jeux interactifs</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2 id="section-1">Contexte et Enjeux</h2>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>Pourquoi s'intéresser aux influenceurs ?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>L'intervention s'inscrit dans une démarche d'<strong>éducation aux médias et à l'information</strong>, en lien avec :</p>
+                        <ul>
+                            <li>Les enjeux de <strong>désinformation</strong> sur les réseaux sociaux</li>
+                            <li>Les <strong>biais cognitifs</strong> qui influencent nos décisions</li>
+                            <li>La <strong>manipulation de l'attention</strong> par les algorithmes</li>
+                            <li>La capacité des influenceurs à façonner les opinions et les comportements</li>
+                        </ul>
+                        <div class="key-point">
+                            💡 <strong>Insight clé :</strong> Les influenceurs ne constituent pas un danger en soi, mais s'inscrivent dans un écosystème informationnel complexe où l'émotion, la popularité et la répétition jouent un rôle central.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-2" style="margin-top: 40px;">Mécanismes d'Influence</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Comment les influenceurs influencent</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Les influenceurs génèrent un fort engagement émotionnel, favorisant la confiance et l'adhésion de leur audience.</strong></p>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">1. Sentiment de proximité</p>
+                        <ul>
+                            <li>Les réseaux sociaux créent l'impression d'une relation personnelle</li>
+                            <li>Cela conduit à une <strong>surestimation de la fiabilité</strong> des propos tenus</li>
+                            <li>On fait davantage confiance à quelqu'un qu'on « connaît »</li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">2. Cadrage du contenu</p>
+                        <ul>
+                            <li>Les contenus diffusés sont fortement <strong>cadrés</strong> (sélectionnés)</li>
+                            <li>Ils montrent une <strong>version partielle, idéalisée de la réalité</strong></li>
+                            <li>C'est volontaire : on montre ce qui fonctionne, pas ce qui échoue</li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">3. Mécanismes cognitifs universels</p>
+                        <ul>
+                            <li>L'influence ne repose pas sur la naïveté ou la crédulité</li>
+                            <li>Elle repose sur des <strong>mécanismes cognitifs universels</strong> auxquels chacun peut être exposé</li>
+                            <li>Nous sommes <strong>tous</strong> influençables !</li>
+                        </ul>
+
+                        <img src="images/biais-autorite-portrait.jpg" alt="Biais d'autorité" class="section-image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>L'écosystème informationnel</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Les influenceurs opèrent dans un <strong>écosystème informationnel</strong> où :</p>
+                        <ul>
+                            <li><strong>L'émotion</strong> prime sur la rationalité</li>
+                            <li>La <strong>popularité</strong> renforce la crédibilité perçue</li>
+                            <li>La <strong>répétition</strong> crée de la familiarité et de la confiance</li>
+                            <li>Les <strong>algorithmes</strong> amplifient les contenus engageants (souvent émotionnels)</li>
+                        </ul>
+                        <div class="highlight-box">
+                            ⚡ <strong>Impact des algorithmes :</strong> Plus un contenu génère d'émotions, plus il est amplifié. Cela favorise la polarisation et la désinformation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-3" style="margin-top: 40px;">Points Clés de l'Intervention</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les 5 constats majeurs</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <ol>
+                            <li style="margin-bottom: 15px;">
+                                <strong>Les influenceurs génèrent un fort engagement émotionnel</strong>, favorisant la confiance et l'adhésion de leur audience.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>Le sentiment de proximité</strong> créé par les réseaux sociaux peut conduire à une surestimation de la fiabilité des propos.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>Les contenus sont fortement cadrés</strong> : version partielle, sélectionnée, souvent idéalisée de la réalité.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>L'influence ne repose pas sur la naïveté</strong>, mais sur des mécanismes cognitifs universels auxquels chacun peut être exposé.
+                            </li>
+                            <li>
+                                <strong>L'écosystème informationnel favorise</strong> l'émotion, la popularité et la répétition.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-4" style="margin-top: 40px;">Compétences à Développer</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Comment développer l'esprit critique face aux influenceurs</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Pour protéger les jeunes et les citoyens :</strong></p>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Reconnaître la manipulation</p>
+                        <ul>
+                            <li>Identifier les contenus sponsorisés et les partenariats commerciaux</li>
+                            <li>Détecter le cadrage biaisé des informations</li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Activer la pensée critique</p>
+                        <ul>
+                            <li><strong>Reconsidérer</strong> avant de croire ou de partager</li>
+                            <li>Se poser des questions : <em>« Qui bénéficie de cette information ? »</em></li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Méfiance envers les raccourcis</p>
+                        <ul>
+                            <li>Se méfier des promesses simples à des problèmes complexes</li>
+                            <li>Chercher à comprendre la nuance et le contexte</li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Développer l'autonomie informationnelle</p>
+                        <ul>
+                            <li>Consulter plusieurs sources</li>
+                            <li>Évaluer la crédibilité des sources</li>
+                            <li>Comprendre les mécanismes des réseaux sociaux et des algorithmes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Conclusion : Pas un danger, un écosystème à comprendre</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>L'intervention met en évidence que <strong>les influenceurs ne constituent pas un danger en soi</strong>, mais qu'ils s'inscrivent dans un écosystème informationnel où :</p>
+                        <ul>
+                            <li>L'<strong>émotion</strong>, la <strong>popularité</strong> et la <strong>répétition</strong> jouent un rôle central</li>
+                            <li>Les <strong>algorithmes amplifient</strong> les contenus engageants</li>
+                            <li>La <strong>compréhension des mécanismes</strong> est la meilleure défense</li>
+                        </ul>
+                        <div class="key-point">
+                            🎯 <strong>Message clé :</strong> En développant l'esprit critique et la compréhension des mécanismes d'influence, chacun peut devenir un consommateur d'information plus responsable et résilient.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="games-section">
+            <h3 id="section-5">🎮 Exercices Interactifs</h3>
+            <p style="margin-bottom: 20px;">Testez votre compréhension avec nos jeux pédagogiques :</p>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <h4>🎯 Radar Naque</h4>
+                    <p>Identifiez les arnaques et arnaqueurs sur internet !</p>
+                    <a href="https://antoninatger.github.io/jeux/radarnaque/index.html" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+
+                <div class="game-card">
+                    <h4>🗣️ Arène Rhétorique</h4>
+                    <p>Apprenez à argumenter et à contre-argumenter efficacement.</p>
+                    <a href="https://antoninatger.github.io/jeux/arene-rhetorique/index.html" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+
+                <div class="game-card">
+                    <h4>🧠 Chasse aux Biais</h4>
+                    <p>Trouvez les biais cognitifs cachés dans les arguments.</p>
+                    <a href="https://antoninatger.github.io/jeux/chasse-aux-biais/index.html" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+
+                <div class="game-card">
+                    <h4>❓ QCM Influenceurs</h4>
+                    <p>Questions à choix multiples sur ce bilan.</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/qcm-classique.html" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="window.print()">📄 Exporter en PDF</button>
+            <a href="index.html" class="btn btn-secondary">← Retour</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Créé par <strong>Antonin Atger</strong> | Collection de jeux pédagogiques sur l'esprit critique</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Ressources : Jeux Arcade, Médiathèque du Cours</p>
+    </footer>
+
+    <script>
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+
+            header.addEventListener('click', () => {
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                item.classList.toggle('active');
+            });
+        });
+
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        if (accordionItems.length > 0 && !accordionItems[0].classList.contains('active')) {
+            accordionItems[0].classList.add('active');
+        }
+    </script>
+</body>
+</html>

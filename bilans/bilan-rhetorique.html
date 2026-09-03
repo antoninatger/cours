@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilan - Rhétorique et Esprit Critique</title>
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #dbeafe;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --accent: #06b6d4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: -20px -20px 40px -20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            opacity: 0.95;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .intro {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 1rem;
+        }
+
+        .toc {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .toc h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 10px 0;
+        }
+
+        .toc a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .toc a:hover {
+            background: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .content h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--bg-light);
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text);
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .accordion-header:hover {
+            background: var(--primary-light);
+        }
+
+        .accordion-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-text {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .accordion-text p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .accordion-text ul, .accordion-text ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .accordion-text li {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .section-image {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .definition-box {
+            background: #f0f9ff;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 1.05rem;
+            color: #0c2340;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .games-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #0891b2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .games-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .game-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .game-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 30px 15px;
+                margin: -15px -15px 30px -15px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .action-buttons {
+                display: none;
+            }
+
+            .accordion-item.active .accordion-content {
+                max-height: none;
+                display: block;
+            }
+
+            .accordion-header {
+                cursor: default;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎤 Rhétorique et Esprit Critique</h1>
+        <p>L'art de convaincre et de se défendre</p>
+    </header>
+
+    <div class="container">
+        <img src="images/avocat-plaidoirie.jpg" alt="Rhétorique" class="hero-image">
+
+        <div class="intro">
+            <strong>Objectif :</strong> Comprendre les techniques de rhétorique, comment elles nous influencent, et comment développer un esprit critique pour mieux argumenter et nous défendre face à la manipulation.
+        </div>
+
+        <div class="toc">
+            <h2>📋 Table des matières</h2>
+            <ul>
+                <li><a href="#section-1">1. Définition et principes</a></li>
+                <li><a href="#section-2">2. Les trois acteurs d'un échange rhétorique</a></li>
+                <li><a href="#section-3">3. Les quatre formes de rhétorique</a></li>
+                <li><a href="#section-4">4. Techniques d'argumentation</a></li>
+                <li><a href="#section-5">5. Jeux interactifs</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2 id="section-1">Définition et Principes Fondamentaux</h2>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>Qu'est-ce que la rhétorique ?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <div class="definition-box">
+                            <strong>La rhétorique est l'art de convaincre par la parole.</strong>
+                        </div>
+
+                        <p><strong>Pourquoi c'est important :</strong></p>
+                        <ul>
+                            <li>Nous sommes <strong>tous influençables</strong> par la parole et l'argumentation</li>
+                            <li>Comprendre la rhétorique aide à mieux argumenter et à détecter la manipulation</li>
+                            <li>C'est une compétence essentielle pour le débat démocratique et le débat civil</li>
+                            <li>La rhétorique peut être utilisée à des fins bonnes ou mauvaises</li>
+                        </ul>
+
+                        <p style="margin-top: 20px;"><strong>Points clés :</strong></p>
+                        <ul>
+                            <li>Ce n'est pas « juste parler », c'est <strong>convaincre stratégiquement</strong></li>
+                            <li>Elle joue un rôle dans la publicité, la politique, les débats, la persuasion</li>
+                            <li>Connaître les techniques aide à les reconnaître et s'en défendre</li>
+                        </ul>
+
+                        <img src="images/aristote.jpg" alt="Aristote - père de la rhétorique" class="section-image">
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 10px;"><em>Aristote (384-322 av. J.-C.) a fondé la théorie de la rhétorique, qui reste valide aujourd'hui.</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-2" style="margin-top: 40px;">Les Trois Acteurs d'un Échange Rhétorique</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les rôles de chacun</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Dans toute situation rhétorique, on trouve trois éléments importants :</p>
+
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>🎤 L'Orateur</h4>
+                                <p><strong>Rôle :</strong> Celui qui cherche à convaincre.<br><br>
+                                C'est la personne qui parle, qui présente son argument, qui essaie de vous faire adhérer à son point de vue.</p>
+                            </div>
+
+                            <div class="card">
+                                <h4>👥 L'Auditoire</h4>
+                                <p><strong>Rôle :</strong> Celui / Ceux que l'on veut convaincre.<br><br>
+                                Ce sont les personnes visées par le discours. L'orateur doit adapter son message à son auditoire.</p>
+                            </div>
+
+                            <div class="card">
+                                <h4>💬 L'Interlocuteur</h4>
+                                <p><strong>Rôle :</strong> La / Les personnes à qui on s'adresse directement.<br><br>
+                                C'est la personne à qui on parle dans le moment, celle qui entend directement le message.</p>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 20px;"><strong>Exemple :</strong> Un politicien qui fait un discours à la télévision :</p>
+                        <ul>
+                            <li><strong>L'orateur :</strong> Le politicien</li>
+                            <li><strong>L'auditoire :</strong> Les électeurs (les gens qu'il veut convaincre)</li>
+                            <li><strong>L'interlocuteur :</strong> Le journaliste ou le présentateur face à lui</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-3" style="margin-top: 40px;">Les Quatre Formes de Rhétorique</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>1. Le Monologue</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Définition :</strong> La personne peut parler / diffuser son argumentaire <strong>sans être interrompue</strong>.</p>
+                        <p><strong>Exemples :</strong></p>
+                        <ul>
+                            <li>Un discours politique (sans débat)</li>
+                            <li>Une conférence</li>
+                            <li>Une publicité télévisée</li>
+                            <li>Un sermon religieux</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Avantage pour l'orateur :</strong> Il peut presenter son argument sans contredit, d'une manière soigneusement préparée.</p>
+                        <p><strong>Limite :</strong> Il n'y a pas de débat, donc moins de chance de révéler les failles du discours.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>2. Le Dialogue</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Définition :</strong> Un <strong>échange entre deux personnes</strong> qui se posent des questions et se répondent mutuellement.</p>
+                        <p><strong>Exemples :</strong></p>
+                        <ul>
+                            <li>Un entretien</li>
+                            <li>Une conversation privée</li>
+                            <li>Un interrogatoire</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Caractéristique :</strong> Chacun peut influencer l'autre par ses questions et ses réponses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>3. Le Débat</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Définition :</strong> Plusieurs personnes défendent <strong>des positions opposées</strong> devant un auditoire, avec la possibilité de s'interrompre (mais avec des règles).</p>
+                        <p><strong>Exemples :</strong></p>
+                        <ul>
+                            <li>Un débat politique télévisé</li>
+                            <li>Un débat parlementaire</li>
+                            <li>Un débat judiciaire</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Enjeu :</strong> L'auditoire doit décider qui a raison. Celui qui argumente le mieux gagne.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>4. La Délibération</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Définition :</strong> Un groupe de personnes <strong>réfléchit ensemble</strong> pour prendre une <strong>décision collective</strong> (pas pour gagner, mais pour trouver la meilleure solution).</p>
+                        <p><strong>Exemples :</strong></p>
+                        <ul>
+                            <li>Une réunion de conseil municipal</li>
+                            <li>Une séance de jury</li>
+                            <li>Une réunion de famille pour décider ensemble</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Différence avec le débat :</strong> Ce n'est pas pour vaincre l'autre, mais pour collaborer et trouver la meilleure solution ensemble.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-4" style="margin-top: 40px;">Techniques d'Argumentation</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les trois piliers de la persuasion (Aristote)</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Pour convaincre, il faut jouer sur trois niveaux :</strong></p>
+
+                        <div class="card-grid" style="margin-top: 20px;">
+                            <div class="card">
+                                <h4>🧠 L'Ethos</h4>
+                                <p><strong>Crédibilité et confiance envers l'orateur.</strong><br><br>
+                                Faire confiance à la source. Est-ce que l'orateur me semble honnête, compétent, digne de confiance ?</p>
+                            </div>
+
+                            <div class="card">
+                                <h4>❤️ Le Pathos</h4>
+                                <p><strong>Les émotions de l'auditoire.</strong><br><br>
+                                Appeler à l'émotion, au sentiment. Faire appel à la peur, à l'espoir, à la sympathie.</p>
+                            </div>
+
+                            <div class="card">
+                                <h4>📚 Le Logos</h4>
+                                <p><strong>La logique et les preuves.</strong><br><br>
+                                Utiliser des faits, des données, des preuves rationnelles pour convaincre.</p>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 20px;"><strong>Exemple - Une pub d'assurance voiture :</strong></p>
+                        <ul>
+                            <li><strong>Ethos :</strong> « Depuis 50 ans, nous protégeons les familles »</li>
+                            <li><strong>Pathos :</strong> Montrer une famille heureuse qui se sent en sécurité</li>
+                            <li><strong>Logos :</strong> « 20% moins chère que la concurrence »</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Techniques courantes de manipulation</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>À reconnaître et à éviter :</strong></p>
+
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 15px;">
+                                <strong>🎭 L'Appel à l'autorité :</strong> <em>« Les experts disent que... »</em> (sans vraiment prouver)
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>❤️ L'Appel aux émotions :</strong> Faire peur ou séduire plutôt que de prouver
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>👥 L'Appel à la popularité :</strong> <em>« Tout le monde le fait »</em> (donc c'est vrai ?)
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>🎯 L'Homme de paille :</strong> Critiquer une version affaiblie de l'argument adverse
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>⛔ Le Faux dilemme :</strong> <em>« C'est soit A, soit B »</em> (alors qu'il y a d'autres options)
+                            </li>
+                        </ul>
+
+                        <p style="margin-top: 20px;"><strong>Comment se défendre :</strong> Reconnaître ces techniques permet de rester critique et de ne pas se faire manipuler.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="games-section">
+            <h3 id="section-5">🎮 Testez Votre Rhétorique</h3>
+            <p style="margin-bottom: 20px;">Mettez en pratique ce que vous avez appris avec ces jeux interactifs :</p>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <h4>🗣️ Arène Rhétorique</h4>
+                    <p>Débattez et apprenez à construire des arguments solides.</p>
+                    <a href="https://antoninatger.github.io/jeux/arene-rhetorique/index.html" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+
+                <div class="game-card">
+                    <h4>🧠 Chasse aux Biais</h4>
+                    <p>Identifiez les sophismes et les techniques de manipulation.</p>
+                    <a href="https://antoninatger.github.io/jeux/chasse-aux-biais/index.html" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+
+                <div class="game-card">
+                    <h4>❓ QCM Rhétorique</h4>
+                    <p>Testez vos connaissances sur les principes et techniques.</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/qcm-classique.html" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+
+                <div class="game-card">
+                    <h4>🎯 Brick Breaker Quiz</h4>
+                    <p>Révision ludique avec ce jeu de casse-briques.</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/brick-breaker-quiz.html" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="window.print()">📄 Exporter en PDF</button>
+            <a href="index.html" class="btn btn-secondary">← Retour</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Créé par <strong>Antonin Atger</strong> | Collection de jeux pédagogiques sur l'esprit critique</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Ressources : Jeux Arcade, Médiathèque du Cours</p>
+    </footer>
+
+    <script>
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+
+            header.addEventListener('click', () => {
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                item.classList.toggle('active');
+            });
+        });
+
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        if (accordionItems.length > 0 && !accordionItems[0].classList.contains('active')) {
+            accordionItems[0].classList.add('active');
+        }
+    </script>
+</body>
+</html>
