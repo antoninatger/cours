@@ -13,3 +13,6 @@ config_veille.json
 
 # Scripts locaux
 *.ps1
+
+# Scripts locaux (double-clic Windows)
+*.bat
