@@ -7,10 +7,10 @@ const SHEETS_URL = "https://hook.eu1.make.com/l15ckvxewndw5sp7aady0rux6kyy1khl";
 
 // ── Bilan correspondant à chaque intervention ─────────────────────────────────
 const INTERVENTION_BILAN_MAP = {
-  "Fake News et esprit critique": "https://antoninatger.github.io/cours/bilans/bilan-fake-news-niveau1.html",
-  "Désinformation, au-delà de la Fake News": "https://antoninatger.github.io/cours/bilans/bilan-fake-news-niveau2.html",
-  "Fake News, influenceurs et esprit critique": "https://antoninatger.github.io/cours/bilans/bilan-formation-influenceurs.html",
-  "Rhétorique et esprit critique": "https://antoninatger.github.io/cours/bilans/bilan-rhetorique.html",
+  "Fake News et esprit critique": "https://antoninatger.github.io/interventions/retours/bilans/bilan-fake-news-niveau1.html",
+  "Désinformation, au-delà de la Fake News": "https://antoninatger.github.io/interventions/retours/bilans/bilan-fake-news-niveau2.html",
+  "Fake News, influenceurs et esprit critique": "https://antoninatger.github.io/interventions/retours/bilans/bilan-formation-influenceurs.html",
+  "Rhétorique et esprit critique": "https://antoninatger.github.io/interventions/retours/bilans/bilan-rhetorique.html",
 };
 
 function updateBilanLink(intervention) {
