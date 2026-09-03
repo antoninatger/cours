@@ -204,6 +204,8 @@ body {
 .btn-submit { background: #0f3460; }
 .btn-submit:hover { background: #0a2545; }
 
+a.btn-pdf { text-decoration: none; display: inline-block; }
+
 .btn-pdf {
   background: none;
   color: #0f3460;
