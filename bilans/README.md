@@ -2,47 +2,29 @@
 
 4 bilans transformés en pages HTML interactives (accordéons, images, jeux intégrés, export PDF).
 
-## Mise en ligne — GitHub Pages
+## Déjà en ligne
 
-**Étape 1 — Créer le dépôt GitHub**
-→ github.com > New repository
-→ Nom : `bilans`
-→ Public
-→ Pas de README (le dossier n'est pas vide)
+Ce dossier est publié dans le dépôt **github.com/antoninatger/cours**, sous-dossier `bilans/`.
 
-**Étape 2 — Connecter le dossier local au dépôt**
-Ouvrez un terminal dans ce dossier et tapez :
-
-```
-git init
-git add .
-git commit -m "Premier déploiement"
-git branch -M main
-git remote add origin https://github.com/antoninatger/bilans.git
-git push -u origin main
-```
-
-**Étape 3 — Activer GitHub Pages**
-→ Sur GitHub : Settings > Pages
+**Vérifie que GitHub Pages est activé** (si pas encore fait) :
+→ Sur github.com/antoninatger/cours : Settings > Pages
 → Source : Deploy from a branch > main > / (root)
 → Save
 
-Votre URL sera :
+Les URLs finales :
 ```
-https://antoninatger.github.io/bilans/
-```
-
-Et pour chaque bilan :
-```
-https://antoninatger.github.io/bilans/bilan-fake-news-niveau1.html
-https://antoninatger.github.io/bilans/bilan-fake-news-niveau2.html
-https://antoninatger.github.io/bilans/bilan-formation-influenceurs.html
-https://antoninatger.github.io/bilans/bilan-rhetorique.html
+https://antoninatger.github.io/cours/bilans/
+https://antoninatger.github.io/cours/bilans/bilan-fake-news-niveau1.html
+https://antoninatger.github.io/cours/bilans/bilan-fake-news-niveau2.html
+https://antoninatger.github.io/cours/bilans/bilan-formation-influenceurs.html
+https://antoninatger.github.io/cours/bilans/bilan-rhetorique.html
 ```
 
-**Étape 4 — Déploiement automatique**
-Double-cliquez sur `Sauvegarder.bat` puis `Publier-en-ligne.bat` à chaque mise à jour
-(même méthode que les autres projets : Jeux, Retour interventions).
+Ces URLs sont déjà utilisées dans :
+- les QR codes ajoutés à la fin des formations (niveau1, niveau2, influenceurs, rhétorique)
+- le formulaire de retour d'intervention (lien vers le bilan après soumission)
+
+Si tu modifies le contenu d'un bilan, republie-le simplement dans le dépôt `cours` (même méthode que d'habitude).
 
 ## Contenu
 

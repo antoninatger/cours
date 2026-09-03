@@ -1,0 +1,15 @@
+# Ce depot est PUBLIC et ne doit contenir que des fichiers destines au web.
+# Garde-fous : meme deposes ici par erreur, ces fichiers ne partiront jamais.
+
+# Mot de passe SMTP en clair
+serveur_retour.py
+config_veille.json
+
+# Documents de travail et donnees
+*.xlsx
+*.docx
+*.pptx
+*.env
+
+# Scripts locaux
+*.ps1
