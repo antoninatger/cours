@@ -11,6 +11,7 @@ const INTERVENTION_BILAN_MAP = {
   "Désinformation, au-delà de la Fake News": "https://antoninatger.github.io/interventions/retours/bilans/bilan-fake-news-niveau2.html",
   "Fake News, influenceurs et esprit critique": "https://antoninatger.github.io/interventions/retours/bilans/bilan-formation-influenceurs.html",
   "Rhétorique et esprit critique": "https://antoninatger.github.io/interventions/retours/bilans/bilan-rhetorique.html",
+  "Fake News et écologie": "https://antoninatger.github.io/interventions/retours/bilans/bilan-fake-news-ecologie.html",
 };
 
 function updateBilanLink(intervention) {
