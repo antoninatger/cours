@@ -73,6 +73,7 @@ body {
 .required { color: #e94560; }
 
 .field-group input[type="text"],
+.field-group input[type="email"],
 .field-group input[type="number"],
 .field-group input[type="date"],
 .field-group select,

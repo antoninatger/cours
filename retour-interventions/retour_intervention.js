@@ -201,6 +201,13 @@ function validateStep1() {
       if (!nom) { alert("Veuillez indiquer votre nom."); return false; }
     }
   }
+  if (canIdentify()) {
+    const email = document.getElementById('f-email').value.trim();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("L'adresse email ne semble pas valide (ex : prenom.nom@ac-academie.fr).");
+      return false;
+    }
+  }
   return true;
 }
 
@@ -227,6 +234,7 @@ function collectData() {
     intervention : getIntervention(),
     nom          : identified ? document.getElementById('f-nom').value.trim()    : "",
     prenom       : identified ? document.getElementById('f-prenom').value.trim() : "",
+    email        : identified ? document.getElementById('f-email').value.trim()  : "",
     etablissement: document.getElementById('f-etablissement').value.trim(),
     classe       : scolaire ? (document.getElementById('f-classe').value.trim() || "Non renseigné") : "",
     nb_seances   : scolaire && isSeanceMultiple() ? (document.getElementById('f-nb-seances').value || "Non renseigné") : "",
@@ -326,6 +334,7 @@ function generatePDF(data) {
   qa('Cadre', data.typeLieu);
   qa('Intervention', data.intervention);
   if (data.nom)    qa('Nom', data.nom + (data.prenom ? ' ' + data.prenom : ''));
+  if (data.email)  qa('Email', data.email);
   qa('Établissement', data.etablissement);
   if (data.classe) qa('Classe', data.classe);
   if (data.seance_type) qa('Format', data.seance_type);
@@ -419,7 +428,8 @@ async function submitForm() {
         access_key: WEB3FORMS_KEY,
         subject   : `[Retour ${data.profil}] ${data.intervention} | ${data.etablissement}`,
         name      : data.nom || 'Anonyme',
-        email     : 'noreply@antoninatger.com',
+        // L'adresse du prof (si donnée) : colonne « Email » du Hub et « Répondre » direct
+        email     : data.email || 'noreply@antoninatger.com',
         message   : corps,
         botcheck  : '',
       }),
@@ -442,7 +452,7 @@ async function submitForm() {
 // ── Reset ─────────────────────────────────────────────────────────────────────
 function resetForm() {
   _lastPdfDoc = null;
-  document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach(el => el.value = '');
   document.getElementById('f-intervention').value = '';
   document.getElementById('f-date').value = '';
   document.getElementById('f-nb-seances').value = '';
